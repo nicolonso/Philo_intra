@@ -53,20 +53,20 @@ static void	eat(t_philo *p)
 	ft_usleep(p->data->time_to_eat, p->data);
 }
 
-static void routine_helper(t_philo *p)
+static void	routine_helper(t_philo *p)
 {
 	long	think_time;
 
 	if (p->data->nb_philo % 2 != 0)
 	{
-		think_time = p->data->time_to_die 
-		- p->data->time_to_eat - p->data->time_to_sleep;
+		think_time = p->data->time_to_die
+			- p->data->time_to_eat - p->data->time_to_sleep;
 		if (think_time > 2)
 			ft_usleep(think_time / 2, p->data);
 	}
 }
 
-void *routine(void	*arg)
+void	*routine(void	*arg)
 {
 	t_philo	*p;
 

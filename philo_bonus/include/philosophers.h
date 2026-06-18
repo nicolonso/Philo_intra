@@ -87,6 +87,8 @@ void	log_print(t_philo *p, char *state);
 
 void	child_run(int id, t_data *data);
 int		supervise(t_data *data);
+void	routine_helper(t_philo *p);
+void	initialize_helper(int id, t_data *data, t_philo *philo);
 
 /* ── Fork process ───────────────────────────────── */
 

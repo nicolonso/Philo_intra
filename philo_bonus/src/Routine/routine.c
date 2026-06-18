@@ -68,28 +68,11 @@ static void	mark_done_and_wait(t_philo *p)
 		usleep(100000);
 }
 
-static void routine_helper(t_philo *p)
-{
-	long	think_time;
-
-	if (p->data->nb_philo % 2 != 0)
-	{
-		think_time = p->data->time_to_die 
-		- p->data->time_to_eat - p->data->time_to_sleep;
-		if (think_time > 2)
-			ft_usleep(think_time / 2);
-	}
-}
-
 void	child_run(int id, t_data *data)
 {
 	t_philo	philo;
 
-	philo.id = id + 1;
-	philo.meals_eaten = 0;
-	philo.last_meal = data->start_time;
-	philo.done = 0;
-	philo.data = data;
+	initialize_helper(id, data, &philo);
 	pthread_mutex_init(&philo.meal_mutex, NULL);
 	pthread_create(&philo.death_watcher, NULL, death_watcher, &philo);
 	pthread_detach(philo.death_watcher);

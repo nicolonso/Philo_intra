@@ -20,7 +20,8 @@ RM					= rm -f
 PHILOSOPHERS_DIR	=	$(SRC_DIR)main.c
 PARSING_DIR			=	$(SRC_DIR)Parsing/parsing.c
 INIT_DIR			=	$(SRC_DIR)Init/init.c
-ROUTINE_DIR			=	$(SRC_DIR)Routine/routine.c
+ROUTINE_DIR			=	$(SRC_DIR)Routine/routine.c \
+						$(SRC_DIR)Routine/routine_helper.c	
 MONITOR_DIR			=	$(SRC_DIR)Monitor/supervisor.c
 UTILS_DIR			=	$(SRC_DIR)Utils/time.c \
 						$(SRC_DIR)Utils/cleanup.c \
