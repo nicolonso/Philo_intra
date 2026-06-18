@@ -6,7 +6,7 @@
 /*   By: nalfonso <nalfonso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 22:22:42 by nalfonso          #+#    #+#             */
-/*   Updated: 2026/05/06 22:52:45 by nalfonso         ###   ########.fr       */
+/*   Updated: 2026/06/18 18:28:09 by nalfonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,20 @@ static void	eat(t_philo *p)
 	ft_usleep(p->data->time_to_eat, p->data);
 }
 
-void	*routine(void *arg)
+static void routine_helper(t_philo *p)
+{
+	long	think_time;
+
+	if (p->data->nb_philo % 2 != 0)
+	{
+		think_time = p->data->time_to_die 
+		- p->data->time_to_eat - p->data->time_to_sleep;
+		if (think_time > 2)
+			ft_usleep(think_time / 2, p->data);
+	}
+}
+
+void *routine(void	*arg)
 {
 	t_philo	*p;
 
@@ -69,6 +82,7 @@ void	*routine(void *arg)
 	while (!stopped(p->data))
 	{
 		log_state(p, "is thinking");
+		routine_helper(p);
 		take_forks(p);
 		eat(p);
 		pthread_mutex_unlock(p->left_fork);
